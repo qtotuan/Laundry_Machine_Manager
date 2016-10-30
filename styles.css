@@ -1,0 +1,50 @@
+.jumbotron {
+  text-align: center;
+}
+
+.status {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  text-align: center
+}
+
+#status-button {
+  color: #ffffff;
+  background-color: #5cb85c;
+  font-size: 50px;
+  height: 200px;
+  width: 400px;
+}
+
+.queue {
+  text-align: center;
+  color: #286090;
+  font-family: Verdana, sans-serif;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 20px;
+}
+
+.start-time {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.queue-name {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.footer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  text-align: center
+}
+
+#line-up-button {
+  font-size: 50px;
+  height: 100px;
+  width: 400px;
+}
