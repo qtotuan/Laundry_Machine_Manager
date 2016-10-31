@@ -1,3 +1,25 @@
+.time-input {
+  margin: 20px auto 20px auto;
+  width: 600px;
+  text-align: center;
+}
+
+
+.current-user {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  text-align: center;
+  color: #333333;
+}
+
+#current-user-name {
+  font-size: 50px;
+  font-size: 50px;
+  color: #5cb85c;
+}
+
 .jumbotron {
   text-align: center;
 }
@@ -16,6 +38,7 @@
   height: 200px;
   width: 400px;
 }
+
 
 .queue {
   text-align: center;
@@ -36,15 +59,14 @@
   margin-top: 10px;
 }
 
-.footer {
-  margin-left: auto;
-  margin-right: auto;
-  width: 600px;
+.start-stop {
+  margin: 20px auto 20px auto;
+  width: 200px;
   text-align: center
 }
 
-#line-up-button {
-  font-size: 50px;
-  height: 100px;
-  width: 400px;
+#start-stop-button {
+  font-size: 20px;
+  height: 50px;
+  width: 100px;
 }
