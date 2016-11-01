@@ -1,5 +1,6 @@
 //Set end time
 var myDeadline = "2016-11-31";
+var remainingTime;
 
 function getRemainingTime (endTime) {
   var totalTime = Date.parse(endTime) - Date.parse(new Date());
@@ -7,7 +8,6 @@ function getRemainingTime (endTime) {
   var minutes = Math.floor((totalTime/1000/60) % 60);
   var hours = Math.floor((totalTime/1000/60/60) % 24);
   var days = Math.floor((totalTime/1000/60/60/24));
-  console.log(seconds);
   return {
   	"totalTime": totalTime,
   	"days": days,
@@ -26,22 +26,35 @@ function updateClock (endtime) {
   var timeHTML = hoursHTML + ":" + minutesHTML + ":" + secondsHTML
   //Update the HTML of the timer
   $("#status-button").html(timeHTML);
+  $("#start-stop-button").html("Cancel");
   //Stop the timer if timer has gone to 0
   if (totalTime.total <=0) {
     clearInterval(totalTime);
   }
 }
 
-function displayTimer (endtime) {
-  var remainingTime = setInterval(function() {
+function runTimer (endtime) {
+  remainingTime = setInterval(function() {
   updateClock(endtime);
   }, 1000);
 }
 
-
 $("#start-stop-button").click(function() {
-  //Update timer in the first second to avoid delay
-  updateClock(myDeadline);
-  //Update the timer every second
-  displayTimer(myDeadline);
+  if ($("#start-stop-button").html() === "Start") {
+    //Update timer in the first second to avoid delay
+    updateClock(myDeadline);
+    //Update the timer every second
+    runTimer(myDeadline);
+  } else if ($("#start-stop-button").html() === "Cancel") {
+    $("#start-stop-button").html("Start");
+    $("#status-button").html("OPEN")
+    clearInterval(remainingTime);
+  }
+});
+
+$("a").click(function() {
+  console.log("CLICK");
+  var input = $(this).html();
+  var timeArray = input.split(" ");
+  var time = parseInt(timeArray[0]);
 });
