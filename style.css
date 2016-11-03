@@ -70,3 +70,19 @@
   height: 50px;
   width: 100px;
 }
+
+.modal-trigger {
+  margin: 20px auto 20px auto;
+  width: 200px;
+  text-align: center
+}
+
+.input-group {
+  margin: 20px auto 20px auto;
+  width: 200px;
+  text-align: center
+}
+
+.glyphicon-remove {
+  color: #d1d3d6;
+}

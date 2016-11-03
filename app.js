@@ -1,9 +1,15 @@
-//Set end time
-var myDeadline = "2016-11-31";
 var remainingTime;
+var myDeadline;
+var userTimeInput;
+var userNameInput;
+
+//Set end time
+function updateMyDeadline () {
+  myDeadline = Date.parse(new Date()) + (userTimeInput * 1000 * 60);
+}
 
 function getRemainingTime (endTime) {
-  var totalTime = Date.parse(endTime) - Date.parse(new Date());
+  var totalTime = Date.parse(new Date(endTime)) - Date.parse(new Date());
   var seconds = Math.floor((totalTime/1000) % 60);
   var minutes = Math.floor((totalTime/1000/60) % 60);
   var hours = Math.floor((totalTime/1000/60/60) % 24);
@@ -39,22 +45,60 @@ function runTimer (endtime) {
   }, 1000);
 }
 
+//Click handler for start/stop button
 $("#start-stop-button").click(function() {
-  if ($("#start-stop-button").html() === "Start") {
+  userNameInput = $(".user-name-input").val();
+  if (!userTimeInput) {
+    alert("Please select minutes");
+  } else if (!userNameInput) {
+    alert("Please tell me your name");
+    console.log(userNameInput);
+  } else if ($("#start-stop-button").html() === "Start") {
     //Update timer in the first second to avoid delay
     updateClock(myDeadline);
     //Update the timer every second
     runTimer(myDeadline);
+    //Display current user
+    updateCurrentUser();
   } else if ($("#start-stop-button").html() === "Cancel") {
     $("#start-stop-button").html("Start");
     $("#status-button").html("OPEN")
     clearInterval(remainingTime);
+    //Clear and show input fields; remove current user name display
+    $(".user-name-input").val("");
+    $(".user-name-input").show();
+    $("#dropdownMenu1").html("");
+    $("#current-user-name").html("");
   }
 });
 
+
+//Get minutes from the dropdown
 $("a").click(function() {
-  console.log("CLICK");
   var input = $(this).html();
   var timeArray = input.split(" ");
-  var time = parseInt(timeArray[0]);
+  userTimeInput = parseInt(timeArray[0]);
+  //Update dropdown menu to show minutes selected
+  $("#dropdownMenu1").html(input);
+  updateMyDeadline();
+
 });
+
+$(".save-button").click(function() {
+  var userName = $(".user-name").val();
+  var userEmail = $(".user-email").val();
+  addToQueue(userName);
+});
+
+function addToQueue (name) {
+  var html = "<div class='row'>";
+  html += "<div class='col-sm-6 start-time'><span class='glyphicon glyphicon-remove'></span></div>";
+  html += "<div class='col-sm-6 queue-name'>" + name + "</div>";
+  $(".queue").append(html);
+}
+
+function updateCurrentUser () {
+  //Display current user and remove input field
+  $("#current-user-name").html(userNameInput);
+  $(".user-name-input").hide();
+}

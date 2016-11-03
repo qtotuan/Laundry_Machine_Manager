@@ -21,7 +21,10 @@ crossorigin="anonymous"></script>
 </div>
 
 <div class="current-user">
-  <div id="current-user-name">Quynh</div>
+  <div class="input-group">
+    <input type="text" class="form-control user-name-input" placeholder="Your Name" aria-describedby="sizing-addon2">
+  </div>
+  <div id="current-user-name"></div>
 </div>
 
 <div class="dropdown time-input">
@@ -47,20 +50,49 @@ crossorigin="anonymous"></script>
 </div>
 
 
-
-
-
 <div class="queue">
   <div class="row">
-    <div class="col-sm-6 start-time">2pm</div>
+    <div class="col-sm-6 start-time"><span class="glyphicon glyphicon-remove"></span></div>
     <div class="col-sm-6 queue-name">Henry</div>
   </div>
   <div class="row">
-    <div class="col-sm-6 start-time">3pm</div>
+    <div class="col-sm-6 start-time"><span class="glyphicon glyphicon-remove"></span></div>
     <div class="col-sm-6 queue-name">Mike</div>
   </div>
 </div>
 
+
+<!-- Button trigger modal -->
+<div class="modal-trigger">
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="modal-trigger-button">
+  Get in line!
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Get in line!</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <input type="text" class="form-control user-name" placeholder="Your Name" aria-describedby="sizing-addon2">
+      </div>
+      <div class="input-group">
+          <input type="text" class="form-control user-email" placeholder="Email" aria-describedby="sizing-addon2">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary save-button" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 <script type="text/javascript" src="./app.js"></script>
