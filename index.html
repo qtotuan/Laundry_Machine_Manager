@@ -13,7 +13,7 @@ crossorigin="anonymous"></script>
 <body>
 
 <div class="jumbotron header">
-  <h1>LAUNDRY</h1>
+  <h1 id="title">LAUNDRY</h1>
 </div>
 
 <div class="status">
@@ -22,7 +22,7 @@ crossorigin="anonymous"></script>
 
 <div class="current-user">
   <div class="input-group">
-    <input type="text" class="form-control user-name-input" placeholder="Your Name" aria-describedby="sizing-addon2">
+    <input type="text" class="form-control" id="user-name-input" placeholder="Your Name" aria-describedby="sizing-addon2">
   </div>
   <div id="current-user-name"></div>
 </div>
@@ -51,11 +51,11 @@ crossorigin="anonymous"></script>
 
 
 <div class="queue">
-  <div class="row">
+  <div class="row queue-row">
     <div class="col-sm-6 start-time"><span class="glyphicon glyphicon-remove"></span></div>
     <div class="col-sm-6 queue-name">Henry</div>
   </div>
-  <div class="row">
+  <div class="row queue-row">
     <div class="col-sm-6 start-time"><span class="glyphicon glyphicon-remove"></span></div>
     <div class="col-sm-6 queue-name">Mike</div>
   </div>
@@ -64,7 +64,7 @@ crossorigin="anonymous"></script>
 
 <!-- Button trigger modal -->
 <div class="modal-trigger">
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="modal-trigger-button">
+<button type="button" class="btn btn-primary btn-lg get-in-line-button" data-toggle="modal" data-target="#myModal" id="modal-trigger-button">
   Get in line!
 </button>
 </div>
@@ -95,5 +95,15 @@ crossorigin="anonymous"></script>
 </div>
 
 </body>
+
+
+<script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  
+
+</script>
+
 <script type="text/javascript" src="./app.js"></script>
+
 </html>

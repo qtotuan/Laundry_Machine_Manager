@@ -1,3 +1,34 @@
+//FIREBASE
+
+var config = {
+  apiKey: "AIzaSyDfPqrPRojOQqc0oIdBp62ACAafoF5MdUM",
+  authDomain: "laundry-app-4175b.firebaseapp.com",
+  databaseURL: "https://laundry-app-4175b.firebaseio.com",
+  storageBucket: "laundry-app-4175b.appspot.com",
+  messagingSenderId: "849872825583"
+};
+firebase.initializeApp(config);
+
+/*
+var title = $("#title");
+console.log(title);
+*/
+var db = firebase.database().ref().child("text");
+db.on("value", function(snap) {
+  $("#current-user-name").html(snap.val());
+})
+
+
+function updateTitle(newTitle) {
+  firebase.database().ref("text").set(newTitle)
+};
+
+
+
+
+
+//LAUNDRY APP
+
 var remainingTime;
 var myDeadline;
 var userTimeInput;
@@ -45,9 +76,24 @@ function runTimer (endtime) {
   }, 1000);
 }
 
+function addToQueue (name) {
+  var html = "<div class='row'>";
+  html += "<div class='col-sm-6 start-time'><span class='glyphicon glyphicon-remove'></span></div>";
+  html += "<div class='col-sm-6 queue-name'>" + name + "</div>";
+  $(".queue").append(html);
+}
+
+function updateCurrentUser () {
+  //Display current user and remove input field
+  $("#current-user-name").html(userNameInput);
+  $("#user-name-input").hide();
+}
+
 //Click handler for start/stop button
 $("#start-stop-button").click(function() {
-  userNameInput = $(".user-name-input").val();
+
+
+  userNameInput = $("#user-name-input").val();
   if (!userTimeInput) {
     alert("Please select minutes");
   } else if (!userNameInput) {
@@ -65,11 +111,12 @@ $("#start-stop-button").click(function() {
     $("#status-button").html("OPEN")
     clearInterval(remainingTime);
     //Clear and show input fields; remove current user name display
-    $(".user-name-input").val("");
-    $(".user-name-input").show();
+    $("#user-name-input").val("");
+    $("#user-name-input").show();
     $("#dropdownMenu1").html("");
     $("#current-user-name").html("");
   }
+  updateTitle($("#user-name-input").val());
 });
 
 
@@ -88,17 +135,11 @@ $(".save-button").click(function() {
   var userName = $(".user-name").val();
   var userEmail = $(".user-email").val();
   addToQueue(userName);
+  $(".glyphicon-remove").on("click", function() {
+    $(this).parent().parent().remove();
+  });
 });
 
-function addToQueue (name) {
-  var html = "<div class='row'>";
-  html += "<div class='col-sm-6 start-time'><span class='glyphicon glyphicon-remove'></span></div>";
-  html += "<div class='col-sm-6 queue-name'>" + name + "</div>";
-  $(".queue").append(html);
-}
-
-function updateCurrentUser () {
-  //Display current user and remove input field
-  $("#current-user-name").html(userNameInput);
-  $(".user-name-input").hide();
-}
+// $(document).on("click", function(e) {
+//   console.log(e.target);
+// });
