@@ -16,13 +16,23 @@ console.log(title);
 var db = firebase.database().ref().child("text");
 db.on("value", function(snap) {
   $("#current-user-name").html(snap.val());
+  console.log(snap);
 })
 
+var db_deadline = firebase.database().ref().child("deadline");
+db_deadline.on("value", function(snap) {
+  myDeadline = snap.val();
+  console.log(snap.val());
+})
 
 function updateTitle(newTitle) {
   firebase.database().ref("text").set(newTitle)
 };
 
+function updateMyDeadline () {
+  deadline = Date.parse(new Date()) + (userTimeInput * 1000 * 60);
+  firebase.database().ref("deadline").set(deadline);
+}
 
 
 
@@ -35,9 +45,6 @@ var userTimeInput;
 var userNameInput;
 
 //Set end time
-function updateMyDeadline () {
-  myDeadline = Date.parse(new Date()) + (userTimeInput * 1000 * 60);
-}
 
 function getRemainingTime (endTime) {
   var totalTime = Date.parse(new Date(endTime)) - Date.parse(new Date());
@@ -91,8 +98,6 @@ function updateCurrentUser () {
 
 //Click handler for start/stop button
 $("#start-stop-button").click(function() {
-
-
   userNameInput = $("#user-name-input").val();
   if (!userTimeInput) {
     alert("Please select minutes");
